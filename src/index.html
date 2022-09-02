@@ -18,24 +18,21 @@
   </head>
   <body>
     <header class="header">
-      <h1 class="title">Weather-App</h1>
-      <h2 class="author">By LuWo0</h2>
+      <div class="logo"></div>
     </header>
     <nav class="navbar">
-      <div>
-        <label for="search">Search</label>
+      <div class="search-inner">
         <input
           data-search="searchbar"
           type="search"
           name="searchbar"
           id="searchbar"
-          placeholder="city-state-zip code"
+          placeholder="city , state , country"
         />
       </div>
-      <div>
-        <button class="random-btn">Random Place</button>
-      </div>
     </nav>
-    <div data-user="user"></div>
+    <main class="cards">
+        <div data-weather="weather"></div>
+    </main>
   </body>
 </html>
