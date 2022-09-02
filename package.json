@@ -1,0 +1,20 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "Generic weather app, nothing fancy (I hope)",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuWo0/weather-app.git"
+  },
+  "author": "Luis Woo (LuWo0)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LuWo0/weather-app/issues"
+  },
+  "homepage": "https://github.com/LuWo0/weather-app#readme"
+}
