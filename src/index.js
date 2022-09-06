@@ -1,7 +1,6 @@
 const API_KEY = "1c13606af81639ce7dce09b093fd9ccd"; //Probably should hide this but whatever
 //TODO: get main and create a card div for each city
 const cards = document.getElementById("main");
-// const weatherData = document.querySelector("[data-weather]");
 const searchQuery = document.getElementById("searchbar");
 
 // object for storing info of a particular place
@@ -20,28 +19,13 @@ const getData = async (place) => {
     const userData = await user.json();
     return userData;    
 }
+// creates a new weather card
 const createNewCard = (data) => {
     const newCard = document.createElement("div");
     newCard.setAttribute("data-weather", "weather");
     fillCardWithData(data, newCard);
-    // newCard.innerText = `City: ${data.name} current temperature (F): ${data.main.temp}`;
     cards.appendChild(newCard);
 }
-
-searchQuery.addEventListener("search", () => {
-    const input = searchQuery.value.split(",");
-    [place.cityName, place.stateId, place.country] = [...input];
-    console.log(place);
-    getData(place)
-        .then((data) => {
-            console.log(data);
-            createNewCard(data);
-        })
-        .catch(err => {
-            console.log(err);
-            //weatherData.textContent = "No search results found.";
-        });
-});
 
 // Will set the data from the api into a new card
 const fillCardWithData = (data, card) => {
@@ -51,19 +35,35 @@ const fillCardWithData = (data, card) => {
     h2.classList.add("city");
     const p = document.createElement("p");
     p.classList.add("sky");
-
+    
     h2.innerText = data.name;
     h1.innerText = `${Math.round(data.main.temp)}º`;
     p.innerText = data.weather[0].description;
-
+    
     card.appendChild(h2);
     card.appendChild(h1);
     card.appendChild(p);
-
-
-    //card.innerText = `City: ${data.name} current temperature (F): ${data.main.temp}`;
+    
 }
 
+searchQuery.addEventListener("search", () => {
+    
+    const input = searchQuery.value.split(",");
+
+    if(searchQuery.value === "") return; // fixed the 'clear' bug 
+
+    [place.cityName, place.stateId, place.country] = [...input];
+    console.log(place);
+    getData(place)
+        .then((data) => {
+            console.log(data);
+            createNewCard(data);
+            searchQuery.value = "";
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    });
 
 
 
