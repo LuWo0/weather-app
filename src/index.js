@@ -1,5 +1,4 @@
 const API_KEY = "1c13606af81639ce7dce09b093fd9ccd"; //Probably should hide this but whatever
-//TODO: get main and create a card div for each city
 const cards = document.getElementById("main");
 const searchQuery = document.getElementById("searchbar");
 
@@ -26,9 +25,13 @@ const getData = async (place) => {
 // creates a new weather card
 const createNewCard = (data) => {
     const newCard = document.createElement("div");
+    const del = document.createElement("button");
+    del.classList.add("delete");
+    del.setAttribute("id", "delete");
     newCard.setAttribute("data-weather", "weather");
     fillCardWithData(data, newCard);
     cards.appendChild(newCard);
+    newCard.appendChild(del);
 }
 
 // Will set the data from the api into a new card
@@ -69,5 +72,10 @@ searchQuery.addEventListener("search", () => {
         });
     });
 
-
+//removes dynamically created cards by clicking on the "x" button
+document.addEventListener("click", (e) => {
+    if(e.target && e.target.id === "delete"){
+        cards.removeChild(e.target.parentNode); 
+    }
+});
 
