@@ -1,5 +1,6 @@
 const API_KEY = "1c13606af81639ce7dce09b093fd9ccd"; //Probably should hide this but whatever
 const cards = document.getElementById("main");
+// import { getData } from "./utils/api";
 const searchQuery = document.getElementById("searchbar");
 
 // object for storing info of a particular place
@@ -36,21 +37,23 @@ const createNewCard = (data) => {
 
 // Will set the data from the api into a new card
 const fillCardWithData = (data, card) => {
-    const h1 = document.createElement("h1");
-    h1.classList.add("temp");
-    const h2 = document.createElement("h2");
-    h2.classList.add("city");
-    const p = document.createElement("p");
-    p.classList.add("sky");
+    const temperature = document.createElement("h1");
+    temperature.classList.add("temp");
+    const city = document.createElement("h2");
+    city.classList.add("city");
+    const skies = document.createElement("p");
+    skies.classList.add("sky");
+    const highAndLow = document.createElement("p");
     
-    h2.innerText = data.name;
-    h1.innerText = `${Math.round(data.main.temp)}º`;
-    p.innerText = data.weather[0].description;
-    
-    card.appendChild(h2);
-    card.appendChild(h1);
-    card.appendChild(p);
-    
+    city.innerText = data.name;
+    temperature.innerText = `${Math.round(data.main.temp)}º`;
+    skies.innerText = data.weather[0].main;
+    highAndLow.innerText = `H:${Math.round(data.main.temp_max)}º  L:${Math.round(data.main.temp_min)}º`;
+
+    card.appendChild(city);
+    card.appendChild(temperature);
+    card.appendChild(skies);
+    card.appendChild(highAndLow);
 }
 
 searchQuery.addEventListener("search", () => {
