@@ -12,11 +12,15 @@ const place = {
 
 // Fetch data from API (error handling will happen at a higher level)
 const getData = async (place) => {
+    const loader = document.createElement("div")
+    loader.classList.add("loader");
+    cards.appendChild(loader);
     const user = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${place.cityName},${place.stateId},${place.country}&appid=${API_KEY}&units=imperial`,
         {mode: 'cors'}
         );
     const userData = await user.json();
+    cards.removeChild(loader);
     return userData;    
 }
 // creates a new weather card
