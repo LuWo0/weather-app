@@ -113,21 +113,36 @@ input {
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2) inset;
 }
 
+#main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+}
 
-[data-user] {
+[data-weather] {
     margin: 20px;
     padding: 20px;
     max-width: 500px;
     min-height: 200px;
-    display: grid;
-    grid-template-rows: 20px 50px 1fr 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     border-radius: 10px;
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
     transition: all 0.2s;
 }
 
-[data-user]:hover {
+[data-weather]:hover {
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
     transform: scale(1.01);
       
+}
+
+.city {
+    font-size: 24px;
+}
+
+.temp {
+    font-size: 72px;
 }
